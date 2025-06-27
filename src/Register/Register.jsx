@@ -1,5 +1,7 @@
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React from 'react';
 import { Link } from 'react-router';
+import { auth } from '../firebase.init';
 
 const Register = () => {
     const handleRegister= e =>{
@@ -9,6 +11,15 @@ const Register = () => {
         const email = e.target.email.value;
         const password= e.target.password.value;
         console.log(name , photoURL, email, password);
+
+        // create user 
+        createUserWithEmailAndPassword(auth,email, password, name, photoURL)
+        .then(result =>{
+            console.log(result);
+        })
+        .catch(error =>{
+            console.log(error);
+        })
     }
     return (
     <div className="card mx-auto bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mt-10">
