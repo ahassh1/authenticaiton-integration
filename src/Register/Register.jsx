@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React from 'react';
 import { Link } from 'react-router';
 import { auth } from '../firebase.init';
-
+ 
 const Register = () => {
     const handleRegister= e =>{
         e.preventDefault()
