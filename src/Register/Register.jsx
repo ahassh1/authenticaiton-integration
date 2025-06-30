@@ -1,9 +1,12 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import React from 'react';
+// import { createUserWithEmailAndPassword } from 'firebase/auth';
+import React, { use } from 'react';
 import { Link } from 'react-router';
-import { auth } from '../firebase.init';
+import { AuthContext } from '../contexts/AuthContext';
+// import { auth } from '../firebase.init';
  
 const Register = () => {
+
+  const {createUser} = use(AuthContext)
     const handleRegister= e =>{
         e.preventDefault()
         const name = e.target.name.value;
@@ -13,7 +16,16 @@ const Register = () => {
         console.log(name , photoURL, email, password);
 
         // create user 
-        createUserWithEmailAndPassword(auth,email, password, name, photoURL)
+        // createUserWithEmailAndPassword(auth,email, password, name, photoURL)
+        // .then(result =>{
+        //     console.log(result.user);
+        // })
+        // .catch(error =>{
+        //     console.log(error);
+        // })
+
+
+        createUser (email, password)
         .then(result =>{
             console.log(result);
         })
@@ -21,6 +33,8 @@ const Register = () => {
             console.log(error);
         })
     }
+
+    
     return (
     <div className="card mx-auto bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mt-10">
       <h1 className="text-3xl text-center font-bold">Register now!</h1>
